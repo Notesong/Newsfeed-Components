@@ -94,10 +94,10 @@
   cursor: pointer;
 }
 .menu {
-  display: none;
+  display: block;
   position: fixed;
   top: 75px;
-  left: 0;
+  left: -350px;
   width: 350px;
   height: 100vh;
   /* This give the height 100% of the screen or, '100% of View Height' */
@@ -120,9 +120,6 @@
 }
 .menu ul li a:hover {
   color: white;
-}
-.menu--open {
-  display: block;
 }
 html,
 body {

@@ -52,6 +52,12 @@ function createMenu(arr) {
   const menuButton = document.querySelector('.menu-button');
   menuButton.addEventListener('click', () => {
     menu.classList.toggle('menu--open');
+    if(menu.classList.contains('menu--open')) {
+      TweenLite.to(".menu", 1, {left:'0', ease:Power2.easeInOut});
+    } else {
+      TweenLite.to(".menu", 1, {left:'-350', ease:Power2.easeInOut});
+    }
+    
   });
 
   return menu;
