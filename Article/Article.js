@@ -126,6 +126,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   const expandSpan = document.createElement('span');
   const open = document.createElement('span');
   const close = document.createElement('span');
+  const hideArticle = document.createElement('span');
 
 
   // structure the new elements
@@ -137,12 +138,14 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   article.appendChild(expandSpan);
   expandSpan.appendChild(open);
   expandSpan.appendChild(close);
+  article.appendChild(hideArticle);
 
   // add classes to new elements
   article.classList.add('article');
   aDate.classList.add('date');
   expandSpan.classList.add('expandButton');
   close.classList.add('hide');
+  hideArticle.classList.add('hideArticle');
 
   // add content to new elements
   aTitle.textContent = title;
@@ -152,12 +155,16 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   aParagraph3.textContent = thirdParagraph;
   open.textContent = 'Expand Article \u25bc';
   close.textContent = 'Close Article \u25b2';
+  hideArticle.textContent = 'Hide Article';
 
   // add dropdown functionality to the article
   expandSpan.addEventListener('click', () => {
     article.classList.toggle('article-open');
     open.classList.toggle('hide');
     close.classList.toggle('hide');
+  });
+  hideArticle.addEventListener('click', () => {
+    article.classList.toggle('hide');
   });
   
   // return the complete article element  
