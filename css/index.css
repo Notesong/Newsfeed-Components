@@ -74,7 +74,7 @@
   background-color: white;
 }
 .article-open {
-  height: auto;
+  height: 400px;
 }
 .hide {
   display: none;
@@ -104,6 +104,13 @@
   font-size: 32px;
   padding: 30px 0;
   text-align: center;
+}
+.menu ul li a {
+  text-decoration: none;
+  color: black;
+}
+.menu ul li a:hover {
+  color: white;
 }
 .menu--open {
   display: block;

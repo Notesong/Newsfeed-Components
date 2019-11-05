@@ -1,12 +1,12 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
-  "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  { link: 'Students', address: 'students.html' },
+  { link: 'Faculty', address: 'faculty.html' },
+  { link: "What's New", address: 'whatsnew.html' },
+  { link: 'Tech Trends', address: 'trends.html' },
+  { link: 'Music', address: 'music.html' },
+  { link: 'Log Out', address: 'logout.html' }
 ];
 
 /* 
@@ -42,7 +42,10 @@ function createMenu(arr) {
   arr.forEach(item => {
     const listItem = document.createElement('li');
     unorderedList.appendChild(listItem);
-    listItem.textContent = item;
+    const link = document.createElement('a')
+    listItem.appendChild(link);
+    link.textContent = item.link;
+    link.href = item.address;
   });
 
   // menu functionality
