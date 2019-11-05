@@ -123,7 +123,10 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   const aParagraph1 = document.createElement('p');
   const aParagraph2 = document.createElement('p');
   const aParagraph3 = document.createElement('p');
-  const expandButtonSpan = document.createElement('span');
+  const expandSpan = document.createElement('span');
+  const open = document.createElement('span');
+  const close = document.createElement('span');
+
 
   // structure the new elements
   article.appendChild(aTitle);
@@ -131,12 +134,15 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   article.appendChild(aParagraph1);
   article.appendChild(aParagraph2);
   article.appendChild(aParagraph3);
-  article.appendChild(expandButtonSpan);
+  article.appendChild(expandSpan);
+  expandSpan.appendChild(open);
+  expandSpan.appendChild(close);
 
   // add classes to new elements
   article.classList.add('article');
   aDate.classList.add('date');
-  expandButtonSpan.classList.add('expandButton');
+  expandSpan.classList.add('expandButton');
+  close.classList.add('hide');
 
   // add content to new elements
   aTitle.textContent = title;
@@ -144,9 +150,16 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   aParagraph1.textContent = firstParagraph;
   aParagraph2.textContent = secondParagraph;
   aParagraph3.textContent = thirdParagraph;
+  open.textContent = 'Expand Article \u25bc';
+  close.textContent = 'Close Article \u25b2';
 
   // add dropdown functionality to the article
-  
+  // Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  expandSpan.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+    open.classList.toggle('hide');
+    close.classList.toggle('hide');
+  });
   
   // return the complete article element  
   return article;
