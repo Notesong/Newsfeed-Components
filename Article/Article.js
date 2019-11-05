@@ -154,7 +154,6 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   close.textContent = 'Close Article \u25b2';
 
   // add dropdown functionality to the article
-  // Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
   expandSpan.addEventListener('click', () => {
     article.classList.toggle('article-open');
     open.classList.toggle('hide');
@@ -165,7 +164,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   return article;
 }
 
-// create a variable for parent for the articles
+// create a variable for parent of the articles
 const parentComponent = document.querySelector('.articles');
 
 // loop through the dataset to create the articles in the DOM
