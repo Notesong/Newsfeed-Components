@@ -50,14 +50,21 @@ function createMenu(arr) {
 
   // menu functionality
   const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', () => {
+  menuButton.addEventListener('click', (event) => {
     menu.classList.toggle('menu--open');
     if(menu.classList.contains('menu--open')) {
       TweenLite.to(".menu", 1, {left:'0', ease:Power2.easeInOut});
     } else {
       TweenLite.to(".menu", 1, {left:'-350', ease:Power2.easeInOut});
     }
-    
+    event.stopPropagation();
+  });
+  const menuBodyToggle = document.querySelector('html');
+  menuBodyToggle.addEventListener('click', () => {
+    if(menu.classList.contains('menu--open')) {
+      menu.classList.remove('menu--open');
+      TweenLite.to(".menu", 1, {left:'-350', ease:Power2.easeInOut});
+    }
   });
 
   return menu;

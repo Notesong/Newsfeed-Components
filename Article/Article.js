@@ -158,13 +158,15 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   hideArticle.textContent = 'Hide Article';
 
   // add dropdown functionality to the article
-  expandSpan.addEventListener('click', () => {
+  expandSpan.addEventListener('click', (event) => {
     article.classList.toggle('article-open');
     open.classList.toggle('hide');
     close.classList.toggle('hide');
+    event.stopPropagation();
   });
-  hideArticle.addEventListener('click', () => {
+  hideArticle.addEventListener('click', (event) => {
     article.classList.toggle('hide');
+    event.stopPropagation();
   });
   
   // return the complete article element  
