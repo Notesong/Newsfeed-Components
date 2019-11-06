@@ -83,7 +83,7 @@
   background-color: white;
 }
 .article-open {
-  height: 400px;
+  height: auto;
 }
 .hide {
   display: none;
