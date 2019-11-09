@@ -85,30 +85,104 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'All Things Javascript',
+    date: 'Nov 4th, 2019',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet lacinia ipsum. Aliquam erat volutpat. Donec eleifend erat tellus, nec pharetra odio porttitor ac. Etiam varius, urna lacinia porttitor efficitur, dolor purus tempor felis, a varius nunc lectus non lorem. Duis eget turpis turpis. Pellentesque vestibulum et odio vitae pellentesque. Fusce rhoncus, velit eu rutrum faucibus, massa ante pretium erat, aliquet ornare orci leo in turpis. Morbi urna massa, porttitor in consequat ut, dictum a justo. Nulla varius viverra est at egestas. Ut malesuada, eros sit amet tincidunt bibendum, nibh arcu egestas nunc, et bibendum sapien felis eget elit. `,
+
+    secondParagraph: `Curabitur tincidunt dignissim egestas. Integer vel condimentum lectus. Curabitur lobortis nisi a purus ultrices feugiat. Curabitur volutpat nulla sed consectetur eleifend. Duis vel urna ut metus feugiat vehicula. Nam posuere felis eget nunc sodales semper. Aliquam non aliquet ipsum. Vestibulum rutrum nec nisl at viverra. Curabitur vitae egestas erat. Sed non placerat nisi. `,
+
+    thirdParagraph: `Donec commodo nisl sit amet lorem vehicula, eu consequat nulla vulputate. Cras ac nisi dignissim, condimentum metus id, hendrerit purus. Suspendisse et est imperdiet, blandit dolor ut, sagittis sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin ut luctus leo. Mauris ut commodo augue, et pretium felis. Mauris eget lacinia orci. Nam ac imperdiet dui, et sagittis diam. Nullam risus turpis, aliquam quis ullamcorper id, rhoncus ut leo. Maecenas non felis sed purus fringilla cursus id at augue. Phasellus consequat vestibulum odio, eu tincidunt ligula pellentesque eu. Etiam nunc mauris, congue et massa eget, convallis pretium lectus. Aenean et suscipit turpis.`
   }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
-
     {three separate paragraph elements}
-
     <span class='expandButton'></span>
   </div>
 
   Hint: You will need to use createElement more than once here!
-
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as its one argument, or 5 separate arguments mapping to each piece of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
   Step 3: return the entire component.
-
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  // define the new elements 
+  const article = document.createElement('div');
+  const aTitle = document.createElement('h2');
+  const aDate = document.createElement('p');
+  const aParagraph1 = document.createElement('p');
+  const aParagraph2 = document.createElement('p');
+  const aParagraph3 = document.createElement('p');
+  const expandSpan = document.createElement('span');
+  const open = document.createElement('span');
+  const close = document.createElement('span');
+  const hideArticle = document.createElement('span');
+
+
+  // structure the new elements
+  article.appendChild(aTitle);
+  article.appendChild(aDate);
+  article.appendChild(aParagraph1);
+  article.appendChild(aParagraph2);
+  article.appendChild(aParagraph3);
+  article.appendChild(expandSpan);
+  expandSpan.appendChild(open);
+  expandSpan.appendChild(close);
+  article.appendChild(hideArticle);
+
+  // add classes to new elements
+  article.classList.add('article');
+  aDate.classList.add('date');
+  expandSpan.classList.add('expandButton');
+  close.classList.add('hide');
+  hideArticle.classList.add('hideArticle');
+
+  // add content to new elements
+  aTitle.textContent = title;
+  aDate.textContent = date;
+  aParagraph1.textContent = firstParagraph;
+  aParagraph2.textContent = secondParagraph;
+  aParagraph3.textContent = thirdParagraph;
+  open.textContent = 'Expand Article \u25bc';
+  close.textContent = 'Close Article \u25b2';
+  hideArticle.textContent = 'Hide Article';
+
+  // add dropdown functionality to the article
+  expandSpan.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+    open.classList.toggle('hide');
+    close.classList.toggle('hide');
+    event.stopPropagation();
+  });
+  hideArticle.addEventListener('click', (event) => {
+    article.classList.toggle('hide');
+    event.stopPropagation();
+  });
+  
+  // return the complete article element  
+  return article;
+}
+
+// create a variable for parent of the articles
+const parentComponent = document.querySelector('.articles');
+
+// loop through the dataset to create the articles in the DOM
+data.forEach(data => {
+  const newArticle = createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
+  parentComponent.appendChild(newArticle);
+});
+
+// Create a function that builds Article components. You are not expected to finish this. This goal is simply an exercise in thinking about how you would implement a function that took some data, created a new Article from it, and appended it to the HTML (without actually writing anything in the HTML file). This is a difficult concept to undertake, but even thinking about how you would implement it will give you a better understanding of how we use frameworks in upcoming sprints.
+function addArticle() {
+  
+}
